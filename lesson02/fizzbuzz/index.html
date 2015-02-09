@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FizzBuzz</title>
+  <meta charset="utf-8">
+</head>
+<body>
+
+<p>Check the output at the console ;) </p>
+
+<script>
+
+function fizzbuzz() {
+
+  for(var nIter=1; nIter <= 100; nIter++) {
+
+    if ( (0 == (nIter % 3)) && (0 == (nIter % 5)) ) {
+      console.log('FizzBuzz');
+    }
+    else if (0 == (nIter % 3)) {
+      console.log('Fizz');
+    }
+    else if (0 == (nIter % 5)) {
+      console.log('Buzz');
+    }
+    else {
+      console.log(nIter);
+    }
+
+  }
+}
+
+fizzbuzz();
+
+</script>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 Процедура за инсталация на Android SDK за Linux, Mac OS и Windows
 ======
-1. Инсталирайте JDK (Java Developer Kit) 6 или по-нова версия: http://www.oracle.com/technetwork/articles/javase/index-jsp-138363.html
+1. Инсталирайте JDK (Java Developer Kit) 7: http://www.oracle.com/technetwork/articles/javase/index-jsp-138363.html
 2. Отворете следния адрес във вашия уеб браузър: https://developer.android.com/sdk/index.html
 3. Натиснете Download Android Studio
 4. Съгласете се правилата и свалянето ще започне.
