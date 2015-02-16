@@ -1,6 +1,11 @@
+var pause = false;
+var angle = 0;
+
 //init function
 function onLoad() {
   document.addEventListener("deviceready", onDeviceReady, false);
+  document.addEventListener("pause", onPause, false);
+  document.addEventListener("resume", onResume, false);
 }
 
 //handle deviceready event
@@ -9,8 +14,22 @@ function onDeviceReady() {
   window.requestAnimationFrame(draw);
 }
 
+//handle pause event
+function onPause() {
+  pause = true;
+}
+
+//handle resume event
+function onResume() {
+  pause = false;
+  window.requestAnimationFrame(draw);
+}
+
 //Draw the Sun, the Earth and its orbit
 function draw() {
+  if (true === pause) {
+    return;
+  }
   var ctx = document.getElementById('draw').getContext('2d');
   //Clear the canvas
   ctx.clearRect(0,0,300,300);
@@ -34,8 +53,11 @@ function draw() {
   //to the center of our drawing area.
   ctx.translate(150,150);
 
-  var time = new Date();
-  ctx.rotate( ((2*Math.PI)/60)*time.getSeconds() + ((2*Math.PI)/60000)*time.getMilliseconds() );
+  angle = angle + 0.01;
+  if (6.28 < angle) {
+    angle = 0;
+  }
+  ctx.rotate(angle);
   //Move to place the Earth at its orbit
   ctx.translate(112,0);
 
