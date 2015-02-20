@@ -39,7 +39,7 @@ function draw() {
   var posY = screenCenterY-120;
 
   // Blue background
-  ctx.fillStyle = "#3366FF";
+  ctx.fillStyle = "#0066FF";
   ctx.fillRect(0, 0, canvas.width, screenCenterY);
 
   // Green background
