@@ -2,8 +2,6 @@ window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFile
 
 var app = {
 
-    fileObject: null,
-
     fileEntry: null,
 
     // Application Constructor
@@ -30,7 +28,7 @@ var app = {
     },
 
     gotFS: function(fileSystem) {
-      fileSystem.root.getFile("note.txt", {create: true, exclusive: false}, app.gotFileEntry, app.fail);
+      fileSystem.root.getFile('note.txt', {create: true, exclusive: false}, app.gotFileEntry, app.fail);
     },
 
     gotFileEntry: function(fileEntry) {
@@ -46,7 +44,7 @@ var app = {
     readAsText: function(file) {
       var reader = new FileReader();
       reader.onloadend = function(evt) {
-        console.log("content of the file read.");
+        console.log('content of the file read.');
         //Load the content of the file into the text area
         document.getElementById('note').value = evt.target.result;
       };
@@ -55,14 +53,13 @@ var app = {
 
     gotFileWriter: function(writer) {
       writer.onwriteend = function(evt) {
-        console.log("File saved.");
+        console.log('File saved.');
       };
       writer.write(document.getElementById('note').value);
     },
 
     fail: function(error) {
-      console.log(JSON.stringify(error));
-      console.log(error.code);
+      console.log('Error: '+error.code);
     },
 
     // Handle button click
