@@ -14,7 +14,7 @@ function chooseAnimationFrameMethod(){
       || window.msRequestAnimationFrame(draw)
       || function(callback) { return setTimeout(callback, 1000 / 60); };
     }else{
-      return !window.requestAnimationFrame(draw)
+      return window.requestAnimationFrame(draw);
     }
 }
 
