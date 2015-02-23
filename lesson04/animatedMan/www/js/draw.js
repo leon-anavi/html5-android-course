@@ -30,7 +30,7 @@ function draw() {
   ctx.canvas.height = window.innerHeight;
 
   // Clear the canvas
-  ctx.clearRect(0,0,400,400);
+  ctx.clearRect(0,0, window.innerWidth, window.innerHeight);
 
   // The vertical center of the screen
   var screenCenterY = Math.round(canvas.height/2);
