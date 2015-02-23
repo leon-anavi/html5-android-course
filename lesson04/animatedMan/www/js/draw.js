@@ -90,10 +90,15 @@ function draw() {
   window.requestAnimationFrame(draw);
 
   posX = calculatePosition();
-  if ( (canvas.width-40) < posX) {
+  if ( (canvas.width-40) < posX ) {
     goLeft = false;
   }
   else if (0 >= posX) {
+    goLeft = true;
+  }
+    
+  if (posX >= (canvas.width)) {
+    posX = canvas.width-40;
     goLeft = true;
   }
 }
