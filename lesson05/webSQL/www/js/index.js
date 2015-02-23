@@ -31,11 +31,11 @@ var app = {
       var dbName = "mobileTestDB";
       var dbDesc = "Database for a simple mobie application";
       var dbSize = 1024 * 1024; //1MB
-      db = openDatabase(dbName, dbVersion, dbDesc, dbSize);
+      app.db = openDatabase(dbName, dbVersion, dbDesc, dbSize);
     },
 
     retrieveData: function() {
-      db.transaction(function (transaction) {
+      app.db.transaction(function (transaction) {
         transaction.executeSql("CREATE TABLE IF NOT EXISTS "+app.table+" (id INTEGER PRIMARY KEY, name TEXT, age INT)");
         transaction.executeSql("SELECT name, age FROM "+app.table+" WHERE id = ?", [1],
         function (sqlTransaction, sqlResult) {
@@ -62,11 +62,11 @@ var app = {
     // Handle button click
     saveData : function() {
       try {
-        if (null == db) {
+        if (null == app.db) {
           throw {message:"Database has not been opened."};
         }
 
-        db.transaction(function (transaction) {
+        app.db.transaction(function (transaction) {
           var name = document.getElementById('name').value;
           var age = parseInt(document.getElementById('age').value);
           //Ensure that the input is converted to an integer
@@ -77,8 +77,8 @@ var app = {
         });
       }
       catch(err) {
-        alert('Unable to save data!');
         console.log('Unable to save data: '+err.message);
+        alert('Unable to save data!');
       }
       app.loadData();
     }
