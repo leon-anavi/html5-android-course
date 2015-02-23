@@ -7,11 +7,21 @@ function onLoad() {
   document.addEventListener("pause", onPause, false);
   document.addEventListener("resume", onResume, false);
 }
+function chooseAnimationFrameMethod(){
+    if ( !window.requestAnimationFrame ) {
+      return window.webkitRequestAnimationFrame(draw)
+      || window.mozRequestAnimationFrame(draw)
+      || window.msRequestAnimationFrame(draw)
+      || function(callback) { return setTimeout(callback, 1000 / 60); };
+    }else{
+      return !window.requestAnimationFrame(draw)
+    }
+}
 
 //handle deviceready event
 function onDeviceReady() {
   // Now it is safe to start the animation
-  window.requestAnimationFrame(draw);
+  chooseAnimationFrameMethod();
 }
 
 //handle pause event
@@ -22,7 +32,7 @@ function onPause() {
 //handle resume event
 function onResume() {
   pause = false;
-  window.requestAnimationFrame(draw);
+  chooseAnimationFrameMethod();
 }
 
 //Draw the Sun, the Earth and its orbit
@@ -71,5 +81,5 @@ function draw() {
   ctx.restore();
 
   //Indirect recursion through callback to draw the next frame
-  window.requestAnimationFrame(draw);
+  chooseAnimationFrameMethod();
 }
