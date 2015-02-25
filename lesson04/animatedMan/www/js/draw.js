@@ -8,6 +8,8 @@ function onLoad() {
 
 // Handle deviceready event
 function onDeviceReady() {
+  // Detect the correct vendor prefix (if needed)
+  requestAnimationFrameShim();
   // Now it is safe to start the animation
   window.requestAnimationFrame(draw);
 }
@@ -18,6 +20,15 @@ function calculatePosition() {
     return posX+2;
   }
   return posX-2;
+}
+
+// requestAnimationFrame Shim
+// http://www.paulirish.com/2011/requestanimationframe-for-smart-animating
+function requestAnimationFrameShim() {
+	if (!window.requestAnimationFrame) {
+		// http://caniuse.com/#search=requestAnimationFrame
+		window.requestAnimationFrame = window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame;
+	}
 }
 
 // Draw the Sun, the Earth and its orbit
@@ -96,7 +107,7 @@ function draw() {
   else if (0 >= posX) {
     goLeft = true;
   }
-    
+
   if (posX >= (canvas.width)) {
     posX = canvas.width-40;
     goLeft = true;
