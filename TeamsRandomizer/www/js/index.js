@@ -58,7 +58,7 @@ var app = {
         app.dataChanged = true;
       }
       else {
-
+        app.tasks = tasks;
       }
     },
 
