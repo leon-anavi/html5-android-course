@@ -14,7 +14,6 @@
   }
 
   function photo() {
-
     cameraOptions = { quality : 100,
     destinationType : Camera.DestinationType.FILE_URI,
     sourceType : Camera.PictureSourceType.CAMERA,
@@ -22,8 +21,6 @@
     saveToPhotoAlbum: true };
 
     navigator.camera.getPicture(function(imageURI) {
-      console.log('done');
-      console.log(imageURI);
       var imgPhoto = document.getElementById('photo');
       imgPhoto.style.visibility = 'visible';
       imgPhoto.src = imageURI;
