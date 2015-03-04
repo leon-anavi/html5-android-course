@@ -17,18 +17,6 @@
     navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
   }
 
-  function motionDetected(event) {
-
-    var acceleration = event.accelerationIncludingGravity;
-
-    var text = 'Acceleration X: ' + acceleration.x + '<br />\n';
-    text += 'Acceleration Y: ' + acceleration.y + '<br />\n';
-    text += 'Acceleration Z: ' + acceleration.z + '<br />\n';
-    text += 'Timestamp: ' + acceleration.timestamp + '\n';
-
-    document.getElementById('info').innerHTML = text;
-  }
-
   function onSuccess(acceleration) {
     var text = 'Acceleration X: ' + acceleration.x + '<br />\n';
     text += 'Acceleration Y: ' + acceleration.y + '<br />\n';
