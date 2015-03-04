@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Photo Example</title>
+
+  <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+  <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+  <script type="text/javascript" charset="utf-8">
+  document.addEventListener("deviceready", onDeviceReady, false);
+
+  function onDeviceReady() {
+    document.getElementById('camera').onclick = photo;
+  }
+
+  function photo() {
+    cameraOptions = { quality : 100,
+    destinationType : Camera.DestinationType.FILE_URI,
+    sourceType : Camera.PictureSourceType.CAMERA,
+    encodingType: Camera.EncodingType.JPEG,
+    saveToPhotoAlbum: true };
+
+    navigator.camera.getPicture(function(imageURI) {
+      var imgPhoto = document.getElementById('photo');
+      imgPhoto.style.visibility = 'visible';
+      imgPhoto.src = imageURI;
+    }, function(err) {
+      alert('Unable to take a photo.');
+    }, cameraOptions);
+  }
+  </script>
+</head>
+<body>
+  <h1>Photo Example</h1>
+  <button id="camera">Take a photo</button>
+  <img id="photo" src="" style="height: 100px; visibility:hidden;" />
+</body>
+</html>
