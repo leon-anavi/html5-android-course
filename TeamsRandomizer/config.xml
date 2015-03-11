@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.ani.tasks" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Tasks</name>
+    <platform name="android">
+        <icon src="www/img/team2.png" density="ldpi" />
+        <icon src="www/img/team2.png" density="mdpi" />
+        <icon src="www/img/team2.png" density="hdpi" />
+        <icon src="www/img/team2.png" density="xhdpi" />
+    </platform>
+    <description>
+        A sample Apache Cordova application to generate teams and tasks.
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+
+</widget>
