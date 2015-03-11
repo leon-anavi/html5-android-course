@@ -8,8 +8,22 @@ function onLoad() {
 
 // Handle deviceready event
 function onDeviceReady() {
+  // Detect the correct vendor prefix (if needed)
+  requestAnimationFrameShim();
   // Now it is safe to start the animation
-  window.requestAnimationFrame(draw);
+  requestAnimFrame();
+}
+
+// choose requestAnimationFrame method that works
+function requestAnimFrame() {
+	var animFrame = window.requestAnimationFrame ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame    ||
+            window.oRequestAnimationFrame      ||
+            window.msRequestAnimationFrame     ||
+            null ;
+ 
+	animFrame(draw);
 }
 
 // Calculate offset of the position
@@ -18,6 +32,15 @@ function calculatePosition() {
     return posX+2;
   }
   return posX-2;
+}
+
+// requestAnimationFrame Shim
+// http://www.paulirish.com/2011/requestanimationframe-for-smart-animating
+function requestAnimationFrameShim() {
+	if (!window.requestAnimationFrame) {
+		// http://caniuse.com/#search=requestAnimationFrame
+		window.requestAnimationFrame = window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame;
+	}
 }
 
 // Draw the Sun, the Earth and its orbit
@@ -30,7 +53,10 @@ function draw() {
   ctx.canvas.height = window.innerHeight;
 
   // Clear the canvas
-  ctx.clearRect(0,0, window.innerWidth, window.innerHeight);
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  
+  console.log('Canvas width: ' + canvas.width);
+  console.log('Canvas height: ' + canvas.height);
 
   // The vertical center of the screen
   var screenCenterY = Math.round(canvas.height/2);
@@ -45,7 +71,6 @@ function draw() {
   // Green background
   ctx.fillStyle = "#006600";
   ctx.fillRect(0, screenCenterY, canvas.width, screenCenterY);
-
 
   // Head
   ctx.beginPath();
@@ -87,16 +112,18 @@ function draw() {
   ctx.stroke();
 
   // Indirect recursion through callback to draw the next frame
-  window.requestAnimationFrame(draw);
+  requestAnimFrame();
 
   posX = calculatePosition();
   if ( (canvas.width-40) < posX ) {
     goLeft = false;
+	// fix the bug where the man goes offscreen
+	posX = canvas.width-40;
   }
   else if (0 >= posX) {
     goLeft = true;
   }
-    
+
   if (posX >= (canvas.width)) {
     posX = canvas.width-40;
     goLeft = true;
